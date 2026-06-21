@@ -1,0 +1,136 @@
+@model MinicoreLogisticaAndrade.ViewModels.ReporteLogisticaViewModel
+
+@{
+    ViewData["Title"] = "Panel de Costos de Distribución";
+}
+
+<!-- Encabezado corporativo -->
+<div class="bg-primary text-white rounded shadow-sm p-4 mb-4">
+    <h1 class="text-center mb-1">
+        <i class="bi bi-truck"></i> Panel de Costos de Distribución
+    </h1>
+    <p class="text-center mb-0 fs-5">Mini Core Logística</p>
+</div>
+
+<!-- Formulario de filtros de fecha -->
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-secondary text-white">
+        <h5 class="mb-0"><i class="bi bi-funnel"></i> Filtrar por Rango de Fechas</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Index" method="post">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label asp-for="FechaInicio" class="form-label fw-bold">Fecha Inicio</label>
+                    <input asp-for="FechaInicio" type="date" class="form-control" />
+                    <span asp-validation-for="FechaInicio" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="FechaFin" class="form-label fw-bold">Fecha Fin</label>
+                    <input asp-for="FechaFin" type="date" class="form-control" />
+                    <span asp-validation-for="FechaFin" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-calculator"></i> Calcular Costos / Filtrar Envíos
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Tabla de resultados -->
+@if (Model.Resultados != null && Model.Resultados.Count > 0)
+{
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">
+                <i class="bi bi-table"></i> Resultados del Reporte
+                <span class="badge bg-light text-dark ms-2">@Model.Resultados.Count repartidor(es)</span>
+            </h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Repartidor</th>
+                            <th class="text-center">Envíos</th>
+                            <th class="text-center">Total kg</th>
+                            <th>Zona</th>
+                            <th class="text-end">Tarifa/kg</th>
+                            <th class="text-end">Costo Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Resultados)
+                        {
+                            <tr>
+                                <td class="fw-bold">@item.NombreRepartidor</td>
+                                <td class="text-center">@item.CantidadEnvios</td>
+                                <td class="text-center">
+                                    @if (item.CantidadEnvios > 0)
+                                    {
+                                        @item.TotalKg.ToString("F2")
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">—</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.ZonasOperadas == "No aplica")
+                                    {
+                                        <span class="text-muted fst-italic">No aplica</span>
+                                    }
+                                    else
+                                    {
+                                        @item.ZonasOperadas
+                                    }
+                                </td>
+                                <td class="text-end">
+                                    @if (item.CantidadEnvios > 0 && item.TotalKg > 0)
+                                    {
+                                        @((item.CostoTotal / item.TotalKg).ToString("C2"))
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">—</span>
+                                    }
+                                </td>
+                                <td class="text-end fw-bold">
+                                    @if (item.CantidadEnvios > 0)
+                                    {
+                                        <span class="text-success">@item.CostoTotal.ToString("C2")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">$0.00</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot class="table-secondary">
+                        <tr class="fw-bold">
+                            <td>TOTAL GENERAL</td>
+                            <td class="text-center">@Model.Resultados.Sum(r => r.CantidadEnvios)</td>
+                            <td class="text-center">@Model.Resultados.Sum(r => r.TotalKg).ToString("F2")</td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-end text-success fs-5">@Model.Resultados.Sum(r => r.CostoTotal).ToString("C2")</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+else if (ViewContext.HttpContext.Request.Method == "POST")
+{
+    <div class="alert alert-warning text-center" role="alert">
+        <i class="bi bi-exclamation-triangle"></i>
+        No se encontraron envíos en el rango de fechas seleccionado.
+    </div>
+}
