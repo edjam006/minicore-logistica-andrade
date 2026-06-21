@@ -1,0 +1,64 @@
+## .NET Core / ASP.NET Core
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]uild/
+bld/
+
+# NuGet
+*.nupkg
+**/[Pp]ackages/*
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+
+# Build directories
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# dotnet tool manifest
+# .config/
+
+# Application publish output
+publish/
+
+# Logs
+*.log
+
+# Secrets
+appsettings.*.local.json
