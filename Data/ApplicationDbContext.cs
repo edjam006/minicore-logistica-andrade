@@ -55,6 +55,28 @@ namespace MinicoreLogisticaAndrade.Data
                       .HasForeignKey(e => e.IdZona)
                       .OnDelete(DeleteBehavior.Cascade);
             });
+
+            // Seed Data - Zonas
+            modelBuilder.Entity<Zonas>().HasData(
+                new Zonas { IdZona = 1, NombreZona = "Norte", TarifaPorKg = 1.50m },
+                new Zonas { IdZona = 2, NombreZona = "Sur", TarifaPorKg = 2.00m },
+                new Zonas { IdZona = 3, NombreZona = "Centro", TarifaPorKg = 1.25m }
+            );
+
+            // Seed Data - Repartidores
+            modelBuilder.Entity<Repartidor>().HasData(
+                new Repartidor { IdRepartidor = 1, Nombre = "Andrés", Email = "andres@logistica.com" },
+                new Repartidor { IdRepartidor = 2, Nombre = "Camila", Email = "camila@logistica.com" },
+                new Repartidor { IdRepartidor = 3, Nombre = "Luis", Email = "luis@logistica.com" }
+            );
+
+            // Seed Data - Envios
+            modelBuilder.Entity<Envios>().HasData(
+                new Envios { IdEnvio = 1, IdRepartidor = 1, IdZona = 1, PesoKg = 10m, FechaEnvio = new DateTime(2025, 5, 5) },
+                new Envios { IdEnvio = 2, IdRepartidor = 1, IdZona = 1, PesoKg = 22m, FechaEnvio = new DateTime(2025, 5, 12) },
+                new Envios { IdEnvio = 3, IdRepartidor = 2, IdZona = 2, PesoKg = 18m, FechaEnvio = new DateTime(2025, 5, 10) },
+                new Envios { IdEnvio = 4, IdRepartidor = 1, IdZona = 3, PesoKg = 15m, FechaEnvio = new DateTime(2025, 6, 1) }
+            );
         }
     }
 }
