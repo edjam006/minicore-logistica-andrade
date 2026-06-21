@@ -1,5 +1,11 @@
 # 🚚 Mini Core Logística - Andrade
 
+![.NET Core](https://img.shields.io/badge/.NET%20Core-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+
 ## Framework Utilizado
 
 **.NET Core MVC (C#)** con **Entity Framework Core** y Base de Datos remota en **Supabase (PostgreSQL)**.
@@ -144,27 +150,13 @@ Acceder en: `http://localhost:8080`
 ## Entregables Universitarios
 
 ### 🎥 Video Explicativo
-> 📌 **Link al Video (Loom / YouTube):** _[Pendiente - Insertar enlace aquí]_
+> 📌 **Link al Video (YouTube):** [https://youtu.be/W5JGotmUIJE?feature=shared](https://youtu.be/W5JGotmUIJE?feature=shared)
 
 ### 🌐 Proyecto Desplegado en Producción
-> 📌 **Link en Render:** _[Pendiente - Insertar enlace aquí]_
+> 📌 **Link en Render:** [https://minicore-logistica-andrade.onrender.com](https://minicore-logistica-andrade.onrender.com)
 
 ### 📧 Correo Institucional
-> 📌 **Email:** alumno.andrade@udla.edu.ec
-
----
-
-## Historial de Commits
-
-| # | Mensaje del Commit |
-|---|---|
-| 1 | Inicialización del proyecto .NET Core MVC y dependencias |
-| 2 | Creación de Modelos de datos, DbContext y ejecución de migración de base de datos |
-| 3 | Inclusión de Seed Data para Zonas, Repartidores y Envíos de prueba |
-| 4 | Creación de ViewModels y definición de la lógica de cálculo LINQ por rangos de fechas |
-| 5 | Implementación del Controlador LogisticaController con filtros HTTP GET y POST |
-| 6 | Diseño de Interfaz de Usuario con Razor Views y Tablas de Resultados de Logística |
-| 7 | Configuración final de producción Dockerfile y documentación completa del README |
+> 📌 **Email:** eduardo.andrade@udla.edu.ec
 
 ---
 
